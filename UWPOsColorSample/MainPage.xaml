@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="UWPOsColorSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPOsColorSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    RequestedTheme="Dark"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:KeyToResourceConverter x:Key="KeyToResourceConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            
+            <Button Content="Open accent color settings"
+                    Click="OnOpenSettingsButtonClick"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,10"/>
+
+            <GridView HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Vertical"
+                                       ItemWidth="420"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+                
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Margin" Value="0,0,10,10"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
+                
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Fill="{Binding Converter={StaticResource KeyToResourceConverter}}"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Margin="10,0,0,0"/>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                
+                <x:String>SystemControlBackgroundAccentBrush</x:String>
+                <x:String>SystemControlDisabledAccentBrush</x:String>
+                <x:String>SystemControlForegroundAccentBrush</x:String>
+                <x:String>SystemControlHighlightAccentBrush</x:String>
+                <x:String>SystemControlHighlightAltAccentBrush</x:String>
+                <x:String>SystemControlHighlightAltListAccentHighBrush</x:String>
+                <x:String>SystemControlHighlightAltListAccentLowBrush</x:String>
+                <x:String>SystemControlHighlightAltListAccentMediumBrush</x:String>
+                <x:String>SystemControlHighlightListAccentHighBrush</x:String>
+                <x:String>SystemControlHighlightListAccentLowBrush</x:String>
+                <x:String>SystemControlHighlightListAccentMediumBrush</x:String>
+                <x:String>SystemControlHighlightAltListAccentLowBrush</x:String>
+
+            </GridView>
+
+        </StackPanel>
+    </Grid>
+</Page>
